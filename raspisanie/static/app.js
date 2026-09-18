@@ -448,6 +448,235 @@ function scoreLookup(subject, grade) {
   return l ? (l.score_file ?? null) : null;
 }
 
+
+// ---------- конструктор ----------
+async function runBuild() {
+  const btn = $("#gen-run");
+  const box = $("#gen-result");
+  const seconds = Number($("#gen-seconds").value);
+  btn.disabled = true;
+  btn.textContent = "Считаю…";
+  box.innerHTML = "";
+  const started = Date.now();
+  const tick = setInterval(() => {
+    const left = Math.max(0, seconds - Math.round((Date.now() - started) / 1000));
+    btn.textContent = left ? `Считаю… ${left} с` : "Почти готово…";
+  }, 1000);
+  try {
+    const res = await api("/api/generate", { seconds, attempts: Number($("#gen-attempts").value) });
+    renderBuildResult(res);
+  } finally {
+    clearInterval(tick);
+    btn.disabled = false;
+    btn.textContent = "Собрать";
+  }
+}
+
+function renderBuildResult(res) {
+  const box = $("#gen-result");
+  box.innerHTML = "";
+  const a = res.analysis.summary, b = res.before, r = res.report;
+
+  const cmp = el("div", "daybars");
+  const card = (title, was, now, better) => {
+    const d = el("div", "daybar " + (now === was ? "" : better ? "ok" : "off"));
+    d.appendChild(el("b", null, title));
+    d.appendChild(el("div", "v", String(now)));
+    d.appendChild(el("div", "s", was === now ? "без изменений" : `было ${was}`));
+    return d;
+  };
+  cmp.appendChild(card("нарушений", b.errors, a.errors, a.errors <= b.errors));
+  cmp.appendChild(card("рекомендаций", b.warnings, a.warnings, a.warnings <= b.warnings));
+  cmp.appendChild(card("накладок учителей", "—", r.clashes, r.clashes === 0));
+  cmp.appendChild(card("окон у учителей", "—", r.windows, true));
+  if (r.prefs_total) cmp.appendChild(card("пожеланий учтено", r.prefs_total, r.prefs_ok, true));
+  const t = el("div", "daybar");
+  t.appendChild(el("b", null, "расчёт"));
+  t.appendChild(el("div", "v", `${r.seconds} с`));
+  t.appendChild(el("div", "s", `${r.steps.toLocaleString("ru")} перестановок`));
+  cmp.appendChild(t);
+  box.appendChild(cmp);
+
+  const row = el("div", "row");
+  row.style.margin = "14px 0";
+  const apply = el("button", "btn");
+  apply.textContent = `Применить — ${r.lessons} уроков`;
+  apply.onclick = async () => {
+    S = await api("/api/apply", {});
+    renderAll();
+    showTab("grid");
+    toast("расписание применено, прежнее — в data/backups");
+  };
+  const again = el("button", "btn ghost", "Пересобрать");
+  again.onclick = runBuild;
+  row.appendChild(apply);
+  row.appendChild(again);
+  box.appendChild(row);
+
+  if (res.analysis.issues.length) {
+    box.appendChild(el("div", "group-title", "Что осталось в новом варианте"));
+    const groups = {};
+    res.analysis.issues.forEach(i => { (groups[i.rule] ||= []).push(i); });
+    Object.entries(groups).forEach(([rule, items]) => {
+      const d = el("div", "issue " + items[0].level);
+      d.appendChild(el("div", "dot"));
+      d.appendChild(el("div", null, `${items[0].text}${items.length > 1 ? ` — и ещё ${items.length - 1}` : ""}`));
+      d.appendChild(el("div", "src", items[0].source));
+      box.appendChild(d);
+    });
+  }
+}
+
+// ---------- нагрузка и пожелания ----------
+function renderPlan() {
+  const box = $("#plan-box");
+  box.innerHTML = "";
+  const withoutTeacher = S.plan.filter(r => !r.teacher).length;
+  box.appendChild(el("div", "muted",
+    `${S.plan.length} позиций плана · ${withoutTeacher} без учителя · ` +
+    `${S.model.lessons.length} уроков в неделю`));
+
+  const table = el("table");
+  table.innerHTML = "<thead><tr><th>Класс</th><th>Предмет</th><th class='num'>Часов</th>" +
+                    "<th>Учитель</th></tr></thead>";
+  const tb = el("tbody");
+  S.plan.forEach(r => {
+    const tr = el("tr");
+    tr.appendChild(el("td", null, r.cls));
+    tr.appendChild(el("td", null, r.subject));
+    const th = el("td", "num");
+    const inp = el("input", "scores-edit");
+    inp.type = "number"; inp.min = "0"; inp.max = "12"; inp.value = r.hours;
+    inp.onchange = async () => {
+      S = await api("/api/plan/hours", { cls: r.cls, subject: r.subject, hours: Number(inp.value) });
+      renderAll(); renderPlan(); toast("часы изменены");
+    };
+    th.appendChild(inp);
+    tr.appendChild(th);
+
+    const td = el("td");
+    const sel = el("select");
+    sel.style.maxWidth = "260px";
+    const none = el("option", null, "— не назначен —");
+    none.value = "";
+    sel.appendChild(none);
+    S.model.teachers.forEach(t => {
+      const o = el("option", null, shortName(t.name) + (t.subjects.length ? ` · ${t.subjects[0]}` : ""));
+      o.value = t.id;
+      if (t.id === r.teacher) o.selected = true;
+      sel.appendChild(o);
+    });
+    if (!r.teacher) sel.style.borderColor = "var(--red)";
+    sel.onchange = async () => {
+      S = await api("/api/plan/teacher", { cls: r.cls, subject: r.subject, teacher: sel.value });
+      renderAll(); renderPlan(); toast("учитель назначен");
+    };
+    td.appendChild(sel);
+    tr.appendChild(td);
+    tb.appendChild(tr);
+  });
+  table.appendChild(tb);
+  box.appendChild(table);
+}
+
+const PREF_KINDS = {
+  no_day: "не ставить в день",
+  max_per_day: "не больше уроков в день",
+  free_day: "нужен свободный день",
+  early: "ставить не позже урока",
+};
+
+function renderPrefs() {
+  const box = $("#prefs-box");
+  box.innerHTML = "";
+  if (!S.prefs.length) {
+    box.appendChild(el("div", "muted", "Пожеланий пока нет — конструктор учитывает только нормативы."));
+    return;
+  }
+  const table = el("table");
+  table.innerHTML = "<thead><tr><th>Учитель</th><th>Пожелание</th><th>Значение</th>" +
+                    "<th>Обязательно</th><th></th></tr></thead>";
+  const tb = el("tbody");
+  S.prefs.forEach((p, idx) => {
+    const t = teacherById(p.teacher);
+    const tr = el("tr");
+    tr.appendChild(el("td", null, t ? shortName(t.name) : p.teacher));
+    tr.appendChild(el("td", null, PREF_KINDS[p.kind] || p.kind));
+    tr.appendChild(el("td", null, p.day ? DAY_FULL[p.day] : String(p.value ?? "")));
+    tr.appendChild(el("td", null, p.hard ? "да" : "желательно"));
+    const td = el("td");
+    const del = el("button", "btn ghost", "убрать");
+    del.onclick = async () => {
+      const prefs = S.prefs.filter((_, i) => i !== idx);
+      S = await api("/api/prefs", { prefs });
+      renderPrefs(); toast("пожелание убрано");
+    };
+    td.appendChild(del);
+    tr.appendChild(td);
+    tb.appendChild(tr);
+  });
+  table.appendChild(tb);
+  box.appendChild(table);
+}
+
+function addPref() {
+  const box = $("#prefs-box");
+  const form = el("div", "pane");
+  form.style.margin = "0 0 14px";
+  form.appendChild(el("h2", null, "Новое пожелание"));
+  const row = el("div", "row");
+
+  const who = el("select");
+  S.model.teachers.forEach(t => {
+    const o = el("option", null, shortName(t.name));
+    o.value = t.id;
+    who.appendChild(o);
+  });
+  const kind = el("select");
+  Object.entries(PREF_KINDS).forEach(([k, label]) => {
+    const o = el("option", null, label);
+    o.value = k;
+    kind.appendChild(o);
+  });
+  const dayPick = el("select");
+  DAYS.forEach(d => {
+    const o = el("option", null, DAY_FULL[d]);
+    o.value = d;
+    dayPick.appendChild(o);
+  });
+  const val = el("input", "scores-edit");
+  val.type = "number"; val.min = "1"; val.max = "7"; val.value = "4";
+  const hard = el("label", "muted");
+  const chk = el("input");
+  chk.type = "checkbox";
+  hard.appendChild(chk);
+  hard.appendChild(document.createTextNode(" обязательно"));
+
+  const sync = () => {
+    dayPick.hidden = kind.value !== "no_day";
+    val.hidden = !["max_per_day", "early"].includes(kind.value);
+  };
+  kind.onchange = sync;
+  sync();
+
+  const save = el("button", "btn", "Сохранить");
+  save.onclick = async () => {
+    const p = { teacher: who.value, kind: kind.value, hard: chk.checked };
+    if (kind.value === "no_day") p.day = dayPick.value;
+    if (["max_per_day", "early"].includes(kind.value)) p.value = Number(val.value);
+    S = await api("/api/prefs", { prefs: [...S.prefs, p] });
+    form.remove();
+    renderPrefs();
+    toast("пожелание добавлено");
+  };
+  const cancel = el("button", "btn ghost", "Отмена");
+  cancel.onclick = () => form.remove();
+
+  [who, kind, dayPick, val, hard, save, cancel].forEach(n => row.appendChild(n));
+  form.appendChild(row);
+  box.prepend(form);
+}
+
 // ---------- общее ----------
 function showTab(name) {
   $$(".tabs button").forEach(b => b.classList.toggle("on", b.dataset.tab === name));
@@ -456,6 +685,7 @@ function showTab(name) {
   if (name === "teachers") { renderTeacherList(); renderTeacherGrid(); }
   if (name === "subs") renderDay();
   if (name === "scores") renderScores();
+  if (name === "load") { renderPrefs(); renderPlan(); }
 }
 
 function renderAll() {
@@ -491,6 +721,15 @@ async function boot() {
     renderDay();
   };
   $("#print-day").onclick = () => window.print();
+  $("#gen-run").onclick = runBuild;
+  $("#auto-assign").onclick = async () => {
+    const res = await api("/api/plan/autoassign", {});
+    S = res;
+    renderAll(); renderPlan();
+    toast(`назначено: ${res.autoassign.homeroom} по классным руководителям, ` +
+          `${res.autoassign.prior} по прошлому году`);
+  };
+  $("#add-pref").onclick = addPref;
   renderAll();
 }
 

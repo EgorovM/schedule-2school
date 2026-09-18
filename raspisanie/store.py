@@ -12,6 +12,7 @@ DATA = ROOT / "data"
 SCHEDULE = DATA / "schedule.json"
 SUBS = DATA / "substitutions.json"
 SCORES = DATA / "scores.json"
+PREFS = DATA / "preferences.json"
 BACKUPS = DATA / "backups"
 
 
@@ -65,3 +66,12 @@ def load_scores() -> dict:
 
 def save_scores(data: dict) -> None:
     _write(SCORES, data)
+
+
+def load_prefs() -> list:
+    """Пожелания учителей: [{teacher, kind, day?, n?, value?, hard?}]."""
+    return _read(PREFS, [])
+
+
+def save_prefs(data: list) -> None:
+    _write(PREFS, data)

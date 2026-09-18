@@ -10,7 +10,8 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-from . import rules, sanpin, store
+from . import plan as planner
+from . import rules, sanpin, solver, store
 
 STATIC = Path(__file__).resolve().parent / "static"
 WEEKDAY = {0: "пн", 1: "вт", 2: "ср", 3: "чт", 4: "пт", 5: "сб"}
@@ -26,7 +27,8 @@ def state() -> dict:
         l["score"] = None if rules.is_extracurricular(l["subject"]) \
             else rules.score_of(l, grade, scores)
     return {"model": model, "analysis": analysis, "scores": scores,
-            "subs": store.load_subs()}
+            "subs": store.load_subs(), "prefs": store.load_prefs(),
+            "plan": planner.build(model), "load": planner.teacher_load(model)}
 
 
 def lesson_key(l: dict) -> tuple:
@@ -55,6 +57,9 @@ def day_sheet(model: dict, subs: dict, on: str) -> dict:
     rows.sort(key=lambda r: (r["cls"], r["n"]))
     return {"date": on, "day": day, "day_full": sanpin.DAY_FULL.get(day, ""),
             "rows": rows, "absent": sorted(absent)}
+
+
+PREVIEW: dict = {}
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -111,6 +116,9 @@ class Handler(BaseHTTPRequestHandler):
             on = q.get("date", [date.today().isoformat()])[0]
             return self._send(day_sheet(store.load_model(), store.load_subs(), on))
 
+        if path == "/api/preview":
+            return self._send(PREVIEW or {"empty": True})
+
         if path == "/api/export":
             return self._export(q.get("kind", ["xlsx"])[0])
 
@@ -160,6 +168,59 @@ class Handler(BaseHTTPRequestHandler):
                     l["teacher"] = teacher or None
                     k += 1
             store.save_model(model, f"{teacher or '—'} → {cls} «{subject}» ({k})")
+            return self._send(state())
+
+        if path == "/api/plan/autoassign":
+            res = planner.autoassign(model)
+            store.save_model(model, "автоназначение учителей")
+            return self._send({**state(), "autoassign": res})
+
+        if path == "/api/plan/teacher":
+            cls, subject, tid = body["cls"], body["subject"], body.get("teacher") or None
+            for l in model["lessons"]:
+                if l["cls"] == cls and l["subject"] == subject:
+                    l["teacher"] = tid
+            store.save_model(model, f"учитель для {cls} «{subject}»")
+            return self._send(state())
+
+        if path == "/api/plan/hours":
+            cls, subject, hours = body["cls"], body["subject"], int(body["hours"])
+            mine = [l for l in model["lessons"] if l["cls"] == cls and l["subject"] == subject]
+            if hours < len(mine):
+                for l in mine[hours:]:
+                    model["lessons"].remove(l)
+            elif hours > len(mine) and mine:
+                nxt = max((l["id"] for l in model["lessons"]), default=0) + 1
+                for k in range(hours - len(mine)):
+                    model["lessons"].append({**mine[0], "id": nxt + k, "day": mine[0]["day"],
+                                             "n": mine[0]["n"]})
+            store.save_model(model, f"{cls} «{subject}»: {hours} ч")
+            return self._send(state())
+
+        if path == "/api/prefs":
+            store.save_prefs(body.get("prefs") or [])
+            return self._send(state())
+
+        if path == "/api/generate":
+            global PREVIEW
+            seconds = max(3.0, min(120.0, float(body.get("seconds", 20))))
+            attempts = max(1, min(5, int(body.get("attempts", 1))))
+            scores = store.load_scores()
+            lessons, report = solver.build(model, scores, store.load_prefs(),
+                                           {"seconds": seconds, "attempts": attempts,
+                                            "seed": int(body.get("seed", 1))})
+            preview_model = {**model, "lessons": lessons}
+            PREVIEW = {"lessons": lessons, "report": report,
+                       "analysis": rules.analyze(preview_model, scores),
+                       "before": rules.analyze(model, scores)["summary"]}
+            return self._send(PREVIEW)
+
+        if path == "/api/apply":
+            if not PREVIEW:
+                return self._send({"error": "сначала соберите расписание"}, 400)
+            model["lessons"] = PREVIEW["lessons"]
+            store.save_model(model, "расписание собрано конструктором")
+            PREVIEW = {}
             return self._send(state())
 
         if path == "/api/scores":

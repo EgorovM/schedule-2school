@@ -14,6 +14,8 @@
     <button data-tab="grid" class="on">Расписание</button>
     <button data-tab="teachers">Учителя</button>
     <button data-tab="checks">Проверки <em id="badge"></em></button>
+    <button data-tab="build">Конструктор</button>
+    <button data-tab="load">Нагрузка</button>
     <button data-tab="subs">Замены</button>
     <button data-tab="scores">Баллы</button>
   </nav>
@@ -81,6 +83,54 @@
     </div>
     <div id="absent-line" class="absent-line"></div>
     <div id="daysheet"></div>
+  </div>
+</section>
+
+<section id="tab-build" class="tab">
+  <div class="pane wide">
+    <div class="pane-head">
+      <h2>Собрать расписание заново</h2>
+      <div class="row">
+        <label class="muted">расчёт
+          <select id="gen-seconds">
+            <option value="10">10 секунд</option>
+            <option value="30" selected>30 секунд</option>
+            <option value="60">1 минута</option>
+            <option value="120">2 минуты</option>
+          </select>
+        </label>
+        <label class="muted">попыток
+          <select id="gen-attempts">
+            <option value="1" selected>1</option>
+            <option value="3">3</option>
+            <option value="5">5</option>
+          </select>
+        </label>
+        <button id="gen-run" class="btn">Собрать</button>
+      </div>
+    </div>
+    <p class="muted" style="max-width:70ch">
+      Конструктор берёт учебный план со вкладки «Нагрузка» и раскладывает его заново:
+      разводит учителей, держит дневные суммы баллов в диапазонах МР 2.4.0331-23,
+      не превышает дневной лимит уроков и старается выполнить пожелания педагогов.
+      Результат сначала показывается для сравнения — текущее расписание не меняется,
+      пока вы не нажмёте «Применить».
+    </p>
+    <div id="gen-result"></div>
+  </div>
+</section>
+
+<section id="tab-load" class="tab">
+  <div class="pane wide">
+    <div class="pane-head">
+      <h2>Учебный план и нагрузка</h2>
+      <div class="row">
+        <button id="auto-assign" class="btn">Заполнить учителей автоматически</button>
+        <button id="add-pref" class="btn ghost">Добавить пожелание</button>
+      </div>
+    </div>
+    <div id="prefs-box"></div>
+    <div id="plan-box"></div>
   </div>
 </section>
 
