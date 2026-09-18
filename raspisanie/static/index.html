@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Расписание — Нюрбинская СОШ №2</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="bar">
+  <div class="brand"><b>Расписание</b> <span id="year">2026/2027</span></div>
+  <nav class="tabs">
+    <button data-tab="grid" class="on">Расписание</button>
+    <button data-tab="teachers">Учителя</button>
+    <button data-tab="checks">Проверки <em id="badge"></em></button>
+    <button data-tab="subs">Замены</button>
+    <button data-tab="scores">Баллы</button>
+  </nav>
+  <div class="bar-right">
+    <span id="saved" class="muted"></span>
+    <a href="/api/export?kind=xlsx" class="btn">Выгрузить в Excel</a>
+  </div>
+</header>
+
+<main>
+
+<section id="tab-grid" class="tab on">
+  <aside class="side">
+    <div class="side-title">Классы</div>
+    <div id="class-list" class="class-list"></div>
+  </aside>
+  <div class="pane">
+    <div class="pane-head">
+      <h2 id="grid-title">—</h2>
+      <div id="grid-meta" class="muted"></div>
+    </div>
+    <div id="daybars" class="daybars"></div>
+    <div id="grid" class="grid"></div>
+    <p class="hint">Урок можно перетащить в другой слот: пустой — перенос, занятый — обмен местами.
+       Клик по уроку — назначить учителя.</p>
+  </div>
+  <aside id="inspect" class="inspect" hidden></aside>
+</section>
+
+<section id="tab-teachers" class="tab">
+  <aside class="side">
+    <div class="side-title">Педработники</div>
+    <input id="tsearch" class="search" placeholder="поиск по фамилии">
+    <div id="teacher-list" class="class-list"></div>
+  </aside>
+  <div class="pane">
+    <div class="pane-head"><h2 id="tname">Выберите учителя</h2><div id="tmeta" class="muted"></div></div>
+    <div id="tgrid" class="grid"></div>
+  </div>
+</section>
+
+<section id="tab-checks" class="tab">
+  <div class="pane wide">
+    <div class="pane-head">
+      <h2>Проверка расписания</h2>
+      <div class="filters">
+        <label><input type="checkbox" id="f-error" checked> нарушения</label>
+        <label><input type="checkbox" id="f-warn" checked> рекомендации</label>
+      </div>
+    </div>
+    <div id="issues"></div>
+  </div>
+</section>
+
+<section id="tab-subs" class="tab">
+  <div class="pane wide">
+    <div class="pane-head">
+      <h2>Замены на день</h2>
+      <div class="row">
+        <input type="date" id="subdate">
+        <select id="absent-pick"><option value="">кто отсутствует…</option></select>
+        <button id="add-absent" class="btn">Отметить</button>
+        <button id="print-day" class="btn ghost">Печать листа</button>
+      </div>
+    </div>
+    <div id="absent-line" class="absent-line"></div>
+    <div id="daysheet"></div>
+  </div>
+</section>
+
+<section id="tab-scores" class="tab">
+  <div class="pane wide">
+    <div class="pane-head">
+      <h2>Шкала трудности</h2>
+      <div class="muted">Баллы СанПиН 1.2.3685-21 (табл. 6.9—6.11). Свои значения перекрывают норматив.</div>
+    </div>
+    <div id="scores"></div>
+  </div>
+</section>
+
+</main>
+
+<div id="toast" class="toast" hidden></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

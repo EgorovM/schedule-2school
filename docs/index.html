@@ -1,0 +1,933 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Официальная информация МБОУ «Нюрбинская средняя общеобразовательная школа №2 им. М. С. Егорова»: расписание уроков и звонков, кружки, актированные дни, контакты.">
+<meta property="og:title" content="Нюрбинская школа №2">
+<meta property="og:description" content="Официальная информация МБОУ «Нюрбинская средняя общеобразовательная школа №2 им. М. С. Егорова»: расписание уроков и звонков, кружки, актированные дни, контакты.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<style>
+  :root { color-scheme: light; padding-top: env(safe-area-inset-top, 0px);
+           padding-bottom: env(safe-area-inset-bottom, 0px); }
+  body { margin: 0; font: 14px/1.5 system-ui, sans-serif; background: #EDF1F4; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+<title>Нюрбинская школа №2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Unbounded:wght@400;600;700&display=swap">
+
+<style>
+  :root {
+    --paper:   #EDF1F4;
+    --paper-2: #FFFFFF;
+    --paper-3: #E2E9EE;
+    --ink:     #0F1E29;
+    --ink-2:   #46606F;
+    --line:    #C7D4DC;
+    --line-2:  #A9BCC8;
+    --blue:    #1F5C80;
+    --ember:   #A8412650;
+    --ember-1: #A84126;
+    --gold:    #9C6F1E;
+    --shadow:  0 1px 0 rgba(15,30,41,.06);
+
+    --display: "Unbounded", "Golos Text", system-ui, sans-serif;
+    --body:    "Golos Text", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono:    "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+    --gutter: clamp(20px, 5vw, 64px);
+    --rail: 168px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:   #0B1620;
+      --paper-2: #12222F;
+      --paper-3: #162938;
+      --ink:     #E4ECF1;
+      --ink-2:   #9CB2BF;
+      --line:    #24394A;
+      --line-2:  #355064;
+      --blue:    #6FB0D2;
+      --ember:   #E3835E40;
+      --ember-1: #E3835E;
+      --gold:    #D4A74E;
+      --shadow:  none;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:   #0B1620;
+    --paper-2: #12222F;
+    --paper-3: #162938;
+    --ink:     #E4ECF1;
+    --ink-2:   #9CB2BF;
+    --line:    #24394A;
+    --line-2:  #355064;
+    --blue:    #6FB0D2;
+    --ember:   #E3835E40;
+    --ember-1: #E3835E;
+    --gold:    #D4A74E;
+    --shadow:  none;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--ember); }
+
+  a { color: inherit; }
+
+  :focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* ---------- draft notice ---------- */
+
+  .draft {
+    background: var(--ember);
+    border-bottom: 1px solid var(--line);
+    padding: 9px var(--gutter);
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  .draft b { font-weight: 600; }
+
+  /* ---------- masthead ---------- */
+
+  .top {
+    position: sticky;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px 28px;
+    padding: 14px var(--gutter);
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .mark {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -.02em;
+    margin-right: auto;
+    display: flex;
+    align-items: baseline;
+    gap: 9px;
+  }
+  .mark i {
+    font-style: normal;
+    color: var(--blue);
+    font-size: 19px;
+  }
+  .top nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    font-size: 13.5px;
+  }
+  .top nav a {
+    text-decoration: none;
+    color: var(--ink-2);
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+    transition: color .15s, border-color .15s;
+  }
+  .top nav a:hover { color: var(--ink); border-bottom-color: var(--blue); }
+
+  /* ---------- page grid ---------- */
+
+  main { padding: 0 var(--gutter) 0; }
+
+  section {
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    gap: 0 40px;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding-block: 56px;
+    border-top: 1px solid var(--line);
+  }
+  section:first-of-type { border-top: 0; }
+  section[id] { scroll-margin-top: calc(64px + env(safe-area-inset-top, 0px)); }
+
+  .rail {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--ink-2);
+    padding-top: 6px;
+  }
+  .rail .saha {
+    display: block;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--ink);
+    letter-spacing: -.01em;
+    margin-bottom: 3px;
+  }
+  .rail .ru {
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    font-size: 10.5px;
+  }
+
+  .col > *:first-child { margin-top: 0; }
+  .col > *:last-child { margin-bottom: 0; }
+
+  h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(22px, 3vw, 29px);
+    letter-spacing: -.025em;
+    line-height: 1.2;
+    text-wrap: balance;
+    margin: 0 0 18px;
+  }
+  h3 {
+    font-family: var(--body);
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0 0 6px;
+  }
+  p { max-width: 62ch; margin: 0 0 16px; }
+  .lead { font-size: 17.5px; color: var(--ink-2); }
+
+  /* ---------- hero ---------- */
+
+  .hero { padding-block: clamp(44px, 7vw, 84px) 48px; }
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(34px, 6.4vw, 66px);
+    line-height: 1.02;
+    letter-spacing: -.045em;
+    text-wrap: balance;
+    margin: 0 0 22px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--blue);
+  }
+  .place {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin: 0 0 20px;
+  }
+  .place span { color: var(--ember-1); }
+
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin-top: 34px;
+    border-top: 1px solid var(--line);
+  }
+  .facts div {
+    flex: 1 1 140px;
+    padding: 16px 20px 14px 0;
+    border-right: 1px solid var(--line);
+    padding-left: 0;
+  }
+  .facts div + div { padding-left: 20px; }
+  .facts div:last-child { border-right: 0; }
+  .facts b {
+    display: block;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(24px, 3.4vw, 34px);
+    letter-spacing: -.04em;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+  }
+  .facts small {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--ink-2);
+  }
+
+  /* ---------- ornament ---------- */
+
+  .ornament {
+    display: block;
+    width: 100%;
+    height: 22px;
+    color: var(--line-2);
+    margin: 0 auto;
+    max-width: 1120px;
+  }
+
+  /* ---------- levels ---------- */
+
+  .levels { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .levels article {
+    background: var(--paper);
+    padding: 20px 22px;
+    display: grid;
+    grid-template-columns: 62px minmax(0, 1fr);
+    gap: 18px;
+    align-items: start;
+  }
+  .levels .num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ember-1);
+    letter-spacing: .04em;
+    padding-top: 3px;
+    font-variant-numeric: tabular-nums;
+  }
+  .levels p { margin: 0; font-size: 14.5px; color: var(--ink-2); }
+
+  /* ---------- clubs ---------- */
+
+  .clubs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    margin: 0 0 18px;
+    list-style: none;
+  }
+  .clubs li {
+    border: 1px solid var(--line-2);
+    border-radius: 999px;
+    padding: 6px 15px 7px;
+    font-size: 14px;
+    background: var(--paper-2);
+  }
+  .clubs li.accent { border-color: var(--ember-1); color: var(--ember-1); }
+
+  /* ---------- cold days ---------- */
+
+  .cold {
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--blue);
+    background: var(--paper-2);
+    padding: 22px 24px;
+  }
+  .cold table { width: 100%; border-collapse: collapse; margin-top: 14px; }
+  .cold th {
+    text-align: left;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    font-weight: 500;
+    color: var(--ink-2);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .cold td {
+    padding: 11px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 15px;
+  }
+  .cold tr:last-child td { border-bottom: 0; }
+  .cold td.deg {
+    text-align: right;
+    font-family: var(--mono);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    color: var(--blue);
+    white-space: nowrap;
+  }
+  .note {
+    font-size: 13px;
+    color: var(--ink-2);
+    margin: 14px 0 0;
+    max-width: 58ch;
+  }
+
+/* ---------- schedule ---------- */
+
+  .picker { display: grid; gap: 14px; margin: 0 0 22px; }
+  .pgroup { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 6px 14px; align-items: start; }
+  .pgroup > b {
+    font-size: 10.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--ink-2);
+    padding-top: 8px;
+  }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  button.cls {
+    font: inherit;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    padding: 8px 13px 9px;
+    border: 1px solid var(--line-2);
+    border-radius: 4px;
+    background: var(--paper-2);
+    color: var(--ink);
+    cursor: pointer;
+    transition: border-color .12s, background .12s, color .12s;
+  }
+  button.cls:hover { border-color: var(--blue); }
+  button.cls[aria-pressed="true"] {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: var(--paper);
+    font-weight: 600;
+  }
+
+  .sched-meta {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .02em;
+    color: var(--ink-2);
+    padding: 0 0 12px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 0;
+  }
+  .sched-meta b { color: var(--ink); font-weight: 500; }
+
+  .week {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-top: 0;
+  }
+  .week .day { background: var(--paper); padding: 15px 14px 16px; }
+  .week .day.today { background: var(--paper-2); }
+  .week .day h4 {
+    margin: 0 0 11px;
+    font-size: 10.5px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--ink-2);
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .week .day.today h4 { color: var(--ember-1); }
+  .week .day.today h4::after { content: "сегодня"; letter-spacing: .06em; }
+
+  .lesson {
+    display: grid;
+    grid-template-columns: 14px minmax(0, 1fr);
+    gap: 2px 9px;
+    padding: 7px 0;
+    border-top: 1px dashed var(--line);
+  }
+  .lesson:first-of-type { border-top: 0; padding-top: 0; }
+  .lesson .n {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ember-1);
+    padding-top: 3px;
+    font-variant-numeric: tabular-nums;
+  }
+  .lesson .s { font-size: 13.5px; line-height: 1.35; }
+  .lesson .t {
+    grid-column: 2;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-2);
+    letter-spacing: .02em;
+  }
+  .lesson .t em { font-style: normal; color: var(--ember-1); }
+  .lesson.now .s { font-weight: 600; }
+  .lesson .room {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-2);
+    border: 1px solid var(--line-2);
+    border-radius: 3px;
+    padding: 0 4px;
+    margin-left: 5px;
+    vertical-align: 1px;
+  }
+
+  /* ---------- bells ---------- */
+
+  .shifts { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px 40px; }
+  .shifts h3 { display: flex; align-items: baseline; gap: 10px; }
+  .shifts h3 span {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--ink-2);
+  }
+
+  /* ---------- bells table ---------- */
+
+  .scroller { overflow-x: auto; }
+  table.bells {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 420px;
+    font-variant-numeric: tabular-nums;
+  }
+  table.bells th {
+    text-align: left;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    font-weight: 500;
+    color: var(--ink-2);
+    padding: 0 16px 9px 0;
+    border-bottom: 1px solid var(--line-2);
+  }
+  table.bells td {
+    padding: 10px 16px 10px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 15px;
+  }
+  table.bells td.t { font-family: var(--mono); font-size: 14px; }
+  table.bells tr.brk td { color: var(--ember-1); font-size: 13.5px; }
+
+  /* ---------- contacts ---------- */
+
+  .contacts { display: grid; gap: 22px 40px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+  .contacts dt {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--ink-2);
+    margin-bottom: 5px;
+  }
+  .contacts dd { margin: 0; font-size: 15.5px; line-height: 1.5; }
+
+  /* ---------- placeholder marker ---------- */
+
+  .ph {
+    border-bottom: 1px dashed var(--ember-1);
+    color: var(--ember-1);
+    padding-bottom: 1px;
+  }
+  .chip {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ember-1);
+    border: 1px solid var(--ember-1);
+    border-radius: 3px;
+    padding: 2px 6px;
+    line-height: 1.4;
+  }
+
+  /* ---------- footer ---------- */
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 34px var(--gutter) 44px;
+    color: var(--ink-2);
+    font-size: 13px;
+  }
+  .footer-in {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: var(--rail) minmax(0, 1fr);
+    gap: 0 40px;
+  }
+  footer p { max-width: 70ch; }
+  footer a { text-decoration-color: var(--line-2); text-underline-offset: 3px; }
+
+  @media (max-width: 860px) {
+    section, .footer-in { grid-template-columns: minmax(0, 1fr); }
+    .rail { padding-top: 0; margin-bottom: 18px; }
+    .rail .saha { display: inline; margin-right: 8px; }
+    .rail .ru { display: inline; }
+    .facts div { flex: 1 1 45%; border-right: 0; padding-left: 0 !important; }
+    .levels article { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+    .pgroup { grid-template-columns: minmax(0, 1fr); }
+    .pgroup > b { padding-top: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<div class="draft">
+  <b>Черновик.</b> Всё, что подчёркнуто пунктиром, — заглушка: подставьте настоящие данные школы (адрес, телефоны, ФИО, цифры) перед публикацией.
+</div>
+
+<header class="top">
+  <div class="mark"><i>№2</i> Нюрбинская СОШ</div>
+  <nav>
+    <a href="#about">О школе</a>
+    <a href="#edu">Обучение</a>
+    <a href="#schedule">Расписание</a>
+    <a href="#bells">Звонки</a>
+    <a href="#life">Жизнь школы</a>
+    <a href="#cold">Актированные дни</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="rail">
+      <span class="saha">Оскуола</span>
+      <span class="ru">Школа</span>
+    </div>
+    <div class="col">
+      <p class="place">Республика Саха (Якутия) <span>·</span> Нюрбинский улус <span>·</span> г. Нюрба</p>
+      <h1>Нюрбинская средняя школа <em>№&nbsp;2</em></h1>
+      <p class="lead">МБОУ «Нюрбинская средняя общеобразовательная школа №&nbsp;2 имени М.&nbsp;С. Егорова». Учим детей Нюрбы с 1 по 11 класс — на русском и на родном языке саха.</p>
+
+      <div class="facts">
+        <div><b>26</b><small>классов</small></div>
+        <div><b>2</b><small>смены</small></div>
+        <div><b class="ph">—</b><small>учащихся</small></div>
+        <div><b>2026/27</b><small>учебный год</small></div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="ornament" viewBox="0 0 960 22" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <defs>
+      <pattern id="saha" width="48" height="22" patternUnits="userSpaceOnUse">
+        <path d="M24 3 L33 11 L24 19 L15 11 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M24 8 L27 11 L24 14 L21 11 Z" fill="currentColor"/>
+        <path d="M0 11 H13 M35 11 H48" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M6 6 q-4 5 0 10 M42 6 q4 5 0 10" fill="none" stroke="currentColor" stroke-width="1.2"/>
+      </pattern>
+    </defs>
+    <rect width="960" height="22" fill="url(#saha)"/>
+  </svg>
+
+  <section id="about">
+    <div class="rail">
+      <span class="saha">Билэн ыл</span>
+      <span class="ru">О школе</span>
+    </div>
+    <div class="col">
+      <h2>Школа в центре улуса</h2>
+      <p>Вторая школа — одна из общеобразовательных школ города Нюрбы, административного центра Нюрбинского улуса на левом берегу Вилюя. Здесь учатся дети из городских кварталов и из наслегов улуса.</p>
+      <p>Обучение ведётся по федеральным государственным образовательным стандартам. Язык обучения — русский; язык саха изучается как родной, в начальных классах ведётся обучение на родном языке.</p>
+      <p><span class="ph">Добавьте 2–3 абзаца об истории школы, традициях и достижениях.</span></p>
+    </div>
+  </section>
+
+  <section id="edu">
+    <div class="rail">
+      <span class="saha">Үөрэх</span>
+      <span class="ru">Обучение</span>
+    </div>
+    <div class="col">
+      <h2>Три уровня образования</h2>
+      <div class="levels">
+        <article>
+          <div class="num">1—4</div>
+          <div>
+            <h3>Начальное общее</h3>
+            <p>Восемь классов: 1а, 1б, 2а, 2б, 3а, 3б, 4а, 4б. Русский язык и язык саха, внеурочная деятельность.</p>
+          </div>
+        </article>
+        <article>
+          <div class="num">5—9</div>
+          <div>
+            <h3>Основное общее</h3>
+            <p>Четырнадцать классов, с 5а по 9б. Завершается ОГЭ; 6, 7 и 8 классы учатся во вторую смену.</p>
+          </div>
+        </article>
+        <article>
+          <div class="num">10—11</div>
+          <div>
+            <h3>Среднее общее</h3>
+            <p>Четыре класса: 10а, 10б, 10в, 11а. Завершается ЕГЭ; в 11а есть индивидуальный проект.</p>
+          </div>
+        </article>
+      </div>
+      <p class="note">Формы обучения: очная. Срок действия государственной аккредитации — <span class="ph">дата</span>. Полный перечень образовательных программ — в разделе «Сведения об образовательной организации».</p>
+    </div>
+  </section>
+
+  <section id="schedule">
+    <div class="rail">
+      <span class="saha">Уруоктар</span>
+      <span class="ru">Расписание уроков</span>
+    </div>
+    <div class="col">
+      <h2>Расписание на 2026/27 учебный год</h2>
+      <p>Выберите класс — откроется вся неделя. Сегодняшний день подсвечен, идущий сейчас урок выделен.</p>
+
+      <div class="picker" id="picker"></div>
+      <p class="sched-meta" id="sched-meta"></p>
+      <div class="week" id="week"></div>
+
+      <p class="note">Расписание действует с начала учебного года; замены и дополнительные занятия объявляются отдельно. Кабинет указан для класса целиком, в начальных классах — у отдельных уроков.</p>
+    </div>
+  </section>
+
+  <section id="bells">
+    <div class="rail">
+      <span class="saha">Уруок кэмэ</span>
+      <span class="ru">Расписание звонков</span>
+    </div>
+    <div class="col">
+      <h2>Звонки</h2>
+      <div class="shifts">
+        <div>
+          <h3>1 смена <span>1—5, 9—11 классы</span></h3>
+          <div class="scroller">
+            <table class="bells">
+              <thead><tr><th scope="col">Урок</th><th scope="col">Время</th><th scope="col">Перемена</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td class="t">08:30 — 09:10</td><td class="t">5 мин</td></tr>
+                <tr><td>2</td><td class="t">09:15 — 09:55</td><td class="t">10 мин</td></tr>
+                <tr><td>3</td><td class="t">10:05 — 10:45</td><td class="t">10 мин</td></tr>
+                <tr><td>4</td><td class="t">10:55 — 11:35</td><td class="t">15 мин</td></tr>
+                <tr><td>5</td><td class="t">11:50 — 12:30</td><td class="t">5 мин</td></tr>
+                <tr><td>6</td><td class="t">12:35 — 13:15</td><td class="t">5 мин</td></tr>
+                <tr><td>7</td><td class="t">13:20 — 14:00</td><td class="t">—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div>
+          <h3>2 смена <span>6—8 классы</span></h3>
+          <div class="scroller">
+            <table class="bells">
+              <thead><tr><th scope="col">Урок</th><th scope="col">Время</th><th scope="col">Перемена</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td class="t">14:00 — 14:40</td><td class="t">5 мин</td></tr>
+                <tr><td>2</td><td class="t">14:45 — 15:25</td><td class="t">15 мин</td></tr>
+                <tr><td>3</td><td class="t">15:40 — 16:20</td><td class="t">10 мин</td></tr>
+                <tr><td>4</td><td class="t">16:30 — 17:10</td><td class="t">5 мин</td></tr>
+                <tr><td>5</td><td class="t">17:15 — 17:55</td><td class="t">5 мин</td></tr>
+                <tr><td>6</td><td class="t">18:00 — 18:40</td><td class="t">—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <p class="note">Начальные классы занимаются в первую смену. <span class="ph">Для 1 классов в сентябре—октябре уточните ступенчатый режим и время питания.</span></p>
+    </div>
+  </section>
+
+  <section id="life">
+    <div class="rail">
+      <span class="saha">Оскуола олоҕо</span>
+      <span class="ru">Жизнь школы</span>
+    </div>
+    <div class="col">
+      <h2>Кружки и секции</h2>
+      <p>После уроков школа работает как дом культуры и спортзал одновременно — это то, чем живёт ребёнок в северном посёлке зимой.</p>
+      <ul class="clubs">
+        <li class="accent">Олонхо</li>
+        <li class="accent">Хомус</li>
+        <li class="accent">Национальные прыжки</li>
+        <li>Вольная борьба</li>
+        <li>Настольный теннис</li>
+        <li>Шахматы</li>
+        <li>Робототехника</li>
+        <li>Школьный театр</li>
+        <li>Юнармия</li>
+        <li>Школьный музей</li>
+      </ul>
+      <p class="note"><span class="ph">Оставьте только те объединения, которые действительно работают, и добавьте расписание занятий и руководителей.</span></p>
+    </div>
+  </section>
+
+  <section id="cold">
+    <div class="rail">
+      <span class="saha">Тымныы күннэр</span>
+      <span class="ru">Актированные дни</span>
+    </div>
+    <div class="col">
+      <h2>Когда занятия отменяются</h2>
+      <p>Решение об отмене занятий принимается по фактической температуре воздуха в 7 утра и объявляется через <span class="ph">канал оповещения: чат класса / радио / сайт</span>.</p>
+      <div class="cold">
+        <strong>Пороговые температуры</strong>
+        <table>
+          <thead>
+            <tr><th scope="col">Классы</th><th scope="col">Занятия отменяются при</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1—4 классы</td><td class="deg">−45 °C и ниже</td></tr>
+            <tr><td>5—9 классы</td><td class="deg">−48 °C и ниже</td></tr>
+            <tr><td>10—11 классы</td><td class="deg">−50 °C и ниже</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Актированный день — не каникулы: задания выдаются дистанционно, пропуск не считается прогулом. Родители вправе оставить ребёнка дома и при менее низкой температуре.</p>
+      </div>
+      <p class="note"><span class="ph">Сверьте пороги с действующим приказом управления образования Нюрбинского улуса — они могут отличаться.</span></p>
+    </div>
+  </section>
+
+  <section id="contacts">
+    <div class="rail">
+      <span class="saha">Сибээс</span>
+      <span class="ru">Контакты</span>
+    </div>
+    <div class="col">
+      <h2>Как нас найти</h2>
+      <dl class="contacts">
+        <div>
+          <dt>Адрес</dt>
+          <dd>678450, Республика Саха (Якутия),<br>Нюрбинский улус, г. Нюрба,<br><span class="ph">ул. —, д. —</span></dd>
+        </div>
+        <div>
+          <dt>Телефон</dt>
+          <dd><span class="ph">+7 (41134) — — —</span></dd>
+        </div>
+        <div>
+          <dt>Электронная почта</dt>
+          <dd><span class="ph">школа@адрес.ru</span></dd>
+        </div>
+        <div>
+          <dt>Директор</dt>
+          <dd>Тимофеев И.&nbsp;И.<br><span class="ph">приёмные часы</span></dd>
+        </div>
+        <div>
+          <dt>Режим работы</dt>
+          <dd>Пн—Пт, 08:00 — 18:00<br>Сб — по расписанию<br>Вс — выходной</dd>
+        </div>
+        <div>
+          <dt>Учредитель</dt>
+          <dd>МКУ «Управление образования Нюрбинского района»</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-in">
+    <div class="rail"><span class="saha">Ньурба</span><span class="ru">2 №-дээх оскуола</span></div>
+    <div class="col">
+      <p>МБОУ «Нюрбинская средняя общеобразовательная школа №&nbsp;2». Сайт носит информационный характер; официальные документы размещаются в разделе «Сведения об образовательной организации», обязательном по приказу Рособрнадзора.</p>
+      <p><span class="ph">© 20— МБОУ «Нюрбинская СОШ №2». ИНН/ОГРН — .</span></p>
+    </div>
+  </div>
+</footer>
+
+<script id="sched-data" type="application/json">{"year":"2026/2027","shifts":[{"name":"1 смена","note":"1—4 классы","classes":["1а","1б","2а","2б","3а","3б","4а","4б"],"rooms":{},"days":[{"d":"понедельник","l":[{"n":1,"t":"08:30-09:10","b":{"1а":"Литературное чтение","1б":"Литературное чтение","4а":"Русский язык","4б":"Русский язык","2а":"Литературное чтение","2б":"Литературное чтение","3а":"Литературное чтение","3б":"Русский язык"}},{"n":2,"t":"09:15-09:55","b":{"1а":"Русский язык","1б":"Русский язык","4а":"Математика","4б":"Математика","2а":"Математика","2б":"Русский язык","3а":"Математика","3б":"Математика"}},{"n":3,"t":"10:05-10:45","b":{"1а":"Математика","1б":"Музыка","4а":"Физическая культура","4б":"Литературное чтение","2а":"Русский язык","2б":"Математика","3а":"Русский язык","3б":"Литературное чтение"}},{"n":4,"t":"10:55-11:35","b":{"1а":"Музыка","1б":"Математика","4а":"Литературное чтение","4б":"Физическая культура","2а":"Музыка","2б":"ИЗО","3а":"Физическая культура","3б":"Труд (технология)"}},{"n":5,"t":"11:50-12:30","b":{"2а":"ИЗО","2б":"Музыка","3а":"Труд (технология)","3б":"Физическая культура"}}]},{"d":"вторник","l":[{"n":1,"t":"08:30-09:10","b":{"1а":"Литературное чтение","1б":"Литературное чтение","4а":"Литературное чтение","4б":"Математика","2а":"Иностранный язык","2б":"Русский язык","3а":"Русский язык","3б":"Русский язык"}},{"n":2,"t":"09:15-09:55","b":{"1а":"Математика","1б":"Математика","4а":"Русский язык","4б":"Русский язык","2а":"Русский язык","2б":"Иностранный язык","3а":"Математика","3б":"Математика"}},{"n":3,"t":"10:05-10:45","b":{"1а":"Русский язык","1б":"ВУД «Якутский язык»","4а":"Математика","4б":"Литературное чтение","2а":"Математика","2б":"Математика","3а":"Иностранный язык","3б":"Литературное чтение"}},{"n":4,"t":"10:55-11:35","b":{"1а":"ВУД «Якутский язык»","1б":"Русский язык","4а":"Иностранный язык","4б":"Физическая культура","2а":"Литературное чтение","2б":"ВУД «Якутский язык»","3а":"Литературное чтение","3б":"Иностранный язык"}},{"n":5,"t":"11:50-12:30","b":{"4а":"Физическая культура","4б":"Иностранный язык","2а":"ВУД «Якутский язык»","2б":"Литературное чтение","3а":"ИЗО","3б":"ИЗО"}}]},{"d":"среда","l":[{"n":1,"t":"08:30-09:10","b":{"1а":"Окружающий мир","1б":"Окружающий мир","4а":"Русский язык","4б":"Литературное чтение","2а":"Литературное чтение","2б":"Окружающий мир","3а":"Русский язык","3б":"Русский язык"}},{"n":2,"t":"09:15-09:55","b":{"1а":"Русский язык","1б":"Русский язык","4а":"Литературное чтение","4б":"Русский язык","2а":"Математика","2б":"Математика","3а":"Математика","3б":"Математика"}},{"n":3,"t":"10:05-10:45","b":{"1а":"Математика","1б":"Математика","4а":"Математика","4б":"Математика","2а":"Русский язык","2б":"Русский язык","3а":"Окружающий мир","3б":"Литературное чтение"}},{"n":4,"t":"10:55-11:35","b":{"1а":"Физическая культура","1б":"Литературное чтение","4а":"Окружающий мир","4б":"Иностранный язык","2а":"Окружающий мир","2б":"Физическая культура","3а":"Иностранный язык","3б":"Окружающий мир"}},{"n":5,"t":"11:50-12:30","b":{"1а":"Литературное чтение","1б":"Физическая культура","4а":"Иностранный язык","4б":"Окружающий мир","2а":"Физическая культура","2б":"Литературное чтение","3а":"Литературное чтение","3б":"Иностранный язык"}}]},{"d":"четверг","l":[{"n":1,"t":"08:30-09:10","b":{"1а":"Литературное чтение","1б":"Литературное чтение","4а":"Математика","4б":"Русский язык","2а":"Математика","2б":"Литературное чтение","3а":"Русский язык","3б":"Русский язык"}},{"n":2,"t":"09:15-09:55","b":{"1а":"Математика","1б":"Математика","4а":"Русский язык","4б":"Математика","2а":"Русский язык","2б":"Русский язык","3а":"Математика","3б":"Музыка"}},{"n":3,"t":"10:05-10:45","b":{"1а":"Русский язык","1б":"Русский язык","4а":"ОРКСЭ","4б":"Музыка","2а":"Литературное чтение","2б":"Математика","3а":"Музыка","3б":"Математика"}},{"n":4,"t":"10:55-11:35","b":{"1а":"Физическая культура","1б":"ИЗО","4а":"Музыка","4б":"Труд (технология)","2а":"Труд (технология)","2б":"Иностранный язык","3а":"Литературное чтение","3б":"Физическая культура"}},{"n":5,"t":"11:50-12:30","b":{"1а":"ИЗО","1б":"Физическая культура","4а":"Труд (технология)","4б":"ОРКСЭ","2а":"Иностранный язык","2б":"Труд (технология)","3а":"Физическая культура","3б":"Литературное чтение"}}]},{"d":"пятница","l":[{"n":1,"t":"08:30-09:10","b":{"1а":"Окружающий мир","1б":"Окружающий мир","4а":"Окружающий мир","4б":"Русский язык","2а":"Русский язык","2б":"Математика","3а":"Русский язык","3б":"Русский язык"}},{"n":2,"t":"09:15-09:55","b":{"1а":"Русский язык","1б":"Русский язык","4а":"Русский язык","4б":"Окружающий мир","2а":"Математика","2б":"Русский язык","3а":"Математика","3б":"Математика"}},{"n":3,"t":"10:05-10:45","b":{"1а":"Физическая культура","1б":"Труд (технология)","4а":"Литературное чтение","4б":"Литературное чтение","2а":"Физическая культура","2б":"Окружающий мир","3а":"ВУД «Якутский язык»","3б":"Окружающий мир"}},{"n":4,"t":"10:55-11:35","b":{"1а":"Труд (технология)","1б":"Физическая культура","4а":"ВУД «Якутский язык»","4б":"ИЗО","2а":"Окружающий мир","2б":"Физическая культура","3а":"Окружающий мир","3б":"ВУД «Якутский язык»"}},{"n":5,"t":"11:50-12:30","b":{"4а":"ИЗО","4б":"ВУД «Якутский язык»"}}]}]},{"name":"1 смена","note":"5, 9—11 классы","classes":["5а","5б","5в","9а","9б","10а","10б","10в","11а"],"rooms":{"5а":"203","5б":"309","5в":"320","9а":"205","9б":"316","10а":"313","10б":"301","10в":"207","11а":"201"},"days":[{"d":"понедельник","l":[{"n":1,"t":"08:30-09:10","b":{"5а":"История","5б":"История","5в":"История","9а":"Русский язык","9б":"Русский язык","10а":"Литература","10б":"Литература","10в":"Обществознание","11а":"Обществознание"}},{"n":2,"t":"09:15-09:55","b":{"5а":"Математика","5б":"Математика","5в":"Русский язык","9а":"Химия","9б":"Химия","10а":"Русский язык","10б":"Геометрия","10в":"Алгебра","11а":"Физика"}},{"n":3,"t":"10:05-10:45","b":{"5а":"Русский язык","5б":"Русский язык","5в":"Русский язык","9а":"Алгебра","9б":"Алгебра","10а":"Химия","10б":"Физика","10в":"Русский язык","11а":"Иностранный язык"}},{"n":4,"t":"10:55-11:35","b":{"5а":"Литература","5б":"Литература","5в":"География","9а":"Иностранный язык","9б":"Иностранный язык","10а":"Информатика","10б":"Информатика","10в":"Литература","11а":"Иностранный язык"}},{"n":5,"t":"11:50-12:30","b":{"5а":"ЯЯГОС","5б":"ЯЯГОС","5в":"Родная литература","9а":"Физическая культура","9б":"Физическая культура","10а":"Физическая культура","10б":"Физическая культура","10в":"Физическая культура","11а":"Русский язык"}},{"n":6,"t":"12:35-13:15","b":{"9а":"ЯЯГОС","9б":"ЯЯГОС","10а":"Алгебра","10б":"Русский язык","10в":"Русский язык","11а":"ОБЗР"}}]},{"d":"вторник","l":[{"n":1,"t":"08:30-09:10","b":{"5а":"География","5б":"География","5в":"Литература","9а":"Русский язык","9б":"Русский язык","10а":"Биология","10б":"Литература","10в":"Информатика","11а":"Обществознание"}},{"n":2,"t":"09:15-09:55","b":{"5а":"Математика","5б":"Математика","5в":"Математика","9а":"Физика","9б":"Физика","10а":"Химия","10б":"Алгебра","10в":"Химия","11а":"Физика"}},{"n":3,"t":"10:05-10:45","b":{"5а":"Иностранный язык","5б":"Иностранный язык","5в":"Математика","9а":"История","9б":"История","10а":"Физика","10б":"Алгебра","10в":"Геометрия","11а":"Иностранный язык"}},{"n":4,"t":"10:55-11:35","b":{"5а":"Русский язык","5б":"Русский язык","5в":"Иностранный язык","9а":"Информатика","9б":"Информатика","10а":"Литература","10б":"История","10в":"Обществознание","11а":"Литература"}},{"n":5,"t":"11:50-12:30","b":{"5а":"Литература","5б":"Литература","5в":"Физическая культура","9а":"Литература","9б":"Литература","10а":"Литература","10б":"Русский язык","10в":"Обществознание","11а":"Русский язык"}},{"n":6,"t":"12:35-13:15","b":{"5а":"Труд (технология)","5б":"Труд (технология)","5в":"Музыка","9а":"Русский язык","9б":"Русский язык","10а":"Русский язык","10б":"Иностранный язык","10в":"История","11а":"Иностранный язык"}}]},{"d":"среда","l":[{"n":1,"t":"08:30-09:10","b":{"5а":"История","5б":"История","5в":"Русский язык","9а":"Обществознание","9б":"Обществознание","10а":"Биология","10б":"Обществознание","10в":"Биология","11а":"История"}},{"n":2,"t":"09:15-09:55","b":{"5а":"Математика","5б":"Математика","5в":"Математика","9а":"Физика","9б":"Физика","10а":"Физика","10б":"Физика","10в":"Алгебра","11а":"Геометрия"}},{"n":3,"t":"10:05-10:45","b":{"5а":"Русский язык","5б":"Русский язык","5в":"Иностранный язык","9а":"Химия","9б":"Химия","10а":"Иностранный язык","10б":"Геометрия","10в":"Вероятность и статистика","11а":"Алгебра"}},{"n":4,"t":"10:55-11:35","b":{"5а":"Физическая культура","5б":"Физическая культура","5в":"История","9а":"География","9б":"География","10а":"Алгебра","10б":"Русский язык","10в":"Литература","11а":"Русский язык"}},{"n":5,"t":"11:50-12:30","b":{"5а":"Иностранный язык","5б":"Иностранный язык","5в":"Физическая культура","9а":"История","9б":"История","10а":"Обществознание","10б":"Иностранный язык","10в":"Литература","11а":"География"}},{"n":6,"t":"12:35-13:15","b":{"5а":"Музыка","5б":"Музыка","9а":"ОБЗР","9б":"ОБЗР","10а":"Русский язык","10б":"ОБЗР","10в":"Иностранный язык","11а":"Алгебра"}}]},{"d":"четверг","l":[{"n":1,"t":"08:30-09:10","b":{"5а":"История","5б":"История","5в":"Литература","9а":"Биология","9б":"Биология","10а":"Обществознание","10б":"Литература","10в":"Литература","11а":"Литература"}},{"n":2,"t":"09:15-09:55","b":{"5а":"Математика","5б":"Математика","5в":"Математика","9а":"Геометрия","9б":"Геометрия","10а":"История","10б":"Физика","10в":"Физика","11а":"Химия"}},{"n":3,"t":"10:05-10:45","b":{"5а":"Русский язык","5б":"Русский язык","5в":"Родной язык","9а":"Алгебра","9б":"Алгебра","10а":"Химия","10б":"Физика","10в":"Иностранный язык","11а":"Вероятность и статистика"}},{"n":4,"t":"10:55-11:35","b":{"5а":"Биология","5б":"Биология","5в":"Родной язык","9а":"Иностранный язык","9б":"Иностранный язык","10а":"Алгебра","10б":"Обществознание","10в":"Иностранный язык","11а":"Обществознание"}},{"n":5,"t":"11:50-12:30","b":{"5а":"Физическая культура","5б":"Физическая культура","5в":"Физическая культура","9а":"Литература","9б":"Литература","10а":"ОБЗР","10б":"История","10в":"История","11а":"Обществознание"}},{"n":6,"t":"12:35-13:15","b":{"5а":"Труд (технология)","5б":"Труд (технология)","9а":"Труд (технология)","9б":"Труд (технология)","10а":"Физическая культура","10б":"География","10в":"Физическая культура","11а":"Физическая культура"}},{"n":7,"t":"13:20-14:00","b":{"10а":"Биология","10б":"Физическая культура","10в":"Русский язык","11а":"География"}}]},{"d":"пятница","l":[{"n":1,"t":"08:30-09:10","b":{"5а":"Литература","5б":"Литература","5в":"Русский язык","9а":"Литература","9б":"Литература","10а":"Биология","10б":"Геометрия","10в":"Обществознание","11а":"История"}},{"n":2,"t":"09:15-09:55","b":{"5а":"ОДКНР/КНРСЯ","5б":"ОДКНР/КНРСЯ","5в":"Математика","9а":"Физика","9б":"Физика","10а":"Геометрия","10б":"Химия","10в":"Литература","11а":"Алгебра"}},{"n":3,"t":"10:05-10:45","b":{"5а":"Математика","5б":"Математика","5в":"ОДКНР/КНРСЯ","9а":"Алгебра","9б":"Алгебра","10а":"Русский язык","10б":"Физика","10в":"Геометрия","11а":"Литература"}},{"n":4,"t":"10:55-11:35","b":{"5а":"Русский язык","5б":"Русский язык","5в":"Труд (технология)","9а":"Вероятность и статистика","9б":"Вероятность и статистика","10а":"Иностранный язык","10б":"Алгебра","10в":"История","11а":"Биология"}},{"n":5,"t":"11:50-12:30","b":{"5а":"ИЗО","5б":"ИЗО","5в":"Родной язык","9а":"Биология","9б":"Биология","10а":"Физическая культура","10б":"Физическая культура","10в":"География","11а":"Русский язык"}},{"n":6,"t":"12:35-13:15","b":{"5а":"Физическая культура","5б":"Физическая культура","5в":"Труд (технология)","9а":"Физическая культура","9б":"Физическая культура","10а":"Химия","10б":"Русский язык","10в":"ОБЗР","11а":"Иностранный язык"}}]},{"d":"суббота","l":[{"n":1,"t":"08:30-09:10","b":{"5в":"Литература","9а":"География","9б":"География","10а":"География","10б":"Иностранный язык","10в":"Иностранный язык","11а":"Литература"}},{"n":2,"t":"09:15-09:55","b":{"5в":"Русский язык","9а":"Иностранный язык","9б":"Иностранный язык","10а":"Геометрия","10б":"Алгебра","10в":"Физика","11а":"Литература"}},{"n":3,"t":"10:05-10:45","b":{"5в":"Биология","9а":"Геометрия","9б":"Геометрия","10а":"Вероятность и статистика","10б":"Вероятность и статистика","10в":"Русский язык","11а":"Алгебра"}},{"n":4,"t":"10:55-11:35","b":{"5в":"История","9а":"Русский язык","9б":"Русский язык","10а":"Иностранный язык","10б":"Биология","10в":"Физическая культура","11а":"Информатика"}},{"n":5,"t":"11:50-12:30","b":{"5в":"ИЗО","9а":"Физическая культура","9б":"Физическая культура","10а":"История","10б":"Информатика","10в":"Алгебра","11а":"Физическая культура"}},{"n":6,"t":"12:35-13:15","b":{"9а":"Информатика","9б":"Информатика","10а":"Индивидуальный проект","10б":"Индивидуальный проект","10в":"Индивидуальный проект","11а":"Геометрия"}}]}]},{"name":"2 смена","note":"6—8 классы","classes":["6а","6б","6в","7а","7б","7в","8а","8б","8в"],"rooms":{"6а":"205","6б":"201","6в":"316","7а":"301","7б":"313","7в":"207","8а":"320","8б":"309","8в":"203"},"days":[{"d":"понедельник","l":[{"n":1,"t":"14:00-14:40","b":{"6а":"Литература","6б":"Литература","6в":"Биология","7а":"География","7б":"География","7в":"История","8а":"История","8б":"История","8в":"История"}},{"n":2,"t":"14:45-15:25","b":{"6а":"Математика","6б":"Математика","6в":"Математика","7а":"Русский язык","7б":"Русский язык","7в":"Алгебра","8а":"Геометрия","8б":"Геометрия","8в":"Геометрия"}},{"n":3,"t":"15:40-16:20","b":{"6а":"Русский язык","6б":"Русский язык","6в":"Иностранный язык","7а":"Русский язык","7б":"Русский язык","7в":"Русский язык","8а":"Русский язык","8б":"Русский язык","8в":"Русский язык"}},{"n":4,"t":"16:30-17:10","b":{"6а":"Физическая культура","6б":"Физическая культура","6в":"История","7а":"Труд (технология)","7б":"Труд (технология)","7в":"Родная литература","8а":"Литература","8б":"Литература","8в":"ОБЗР"}},{"n":5,"t":"17:15-17:55","b":{"6а":"Иностранный язык","6б":"Иностранный язык","6в":"Литература","7а":"ИЗО","7б":"ИЗО","7в":"Труд (технология)","8а":"Физическая культура","8б":"Физическая культура","8в":"Иностранный язык"}},{"n":6,"t":"18:00-18:40","b":{"6а":"ЯЯГОС","6б":"ЯЯГОС","6в":"Труд (технология)","7в":"Физическая культура","8а":"ЯЯГОС","8б":"ЯЯГОС","8в":"Труд (технология)"}}]},{"d":"вторник","l":[{"n":1,"t":"14:00-14:40","b":{"6а":"История","6б":"История","6в":"Родной язык","7а":"История","7б":"История","7в":"География","8а":"Геометрия","8б":"Геометрия","8в":"География"}},{"n":2,"t":"14:45-15:25","b":{"6а":"Русский язык","6б":"Русский язык","6в":"Математика","7а":"Геометрия","7б":"Геометрия","7в":"Родной язык","8а":"Физика","8б":"Физика","8в":"Алгебра"}},{"n":3,"t":"15:40-16:20","b":{"6а":"Математика","6б":"Математика","6в":"Русский язык","7а":"Иностранный язык","7б":"Иностранный язык","7в":"Алгебра","8а":"Иностранный язык","8б":"Иностранный язык","8в":"Физика"}},{"n":4,"t":"16:30-17:10","b":{"6а":"Иностранный язык","6б":"Иностранный язык","6в":"Литература","7а":"Физическая культура","7б":"Физическая культура","7в":"Иностранный язык","8а":"История","8б":"История","8в":"История"}},{"n":5,"t":"17:15-17:55","b":{"6а":"Труд (технология)","6б":"Труд (технология)","6в":"Математика","7а":"Русский язык","7б":"Русский язык","7в":"Физика","8а":"Русский язык","8б":"Русский язык","8в":"Биология"}},{"n":6,"t":"18:00-18:40","b":{"6а":"Физическая культура","6б":"Физическая культура","7в":"История","8а":"Информатика","8б":"Информатика","8в":"Труд (технология)"}}]},{"d":"среда","l":[{"n":1,"t":"14:00-14:40","b":{"6а":"Биология","6б":"Биология","6в":"История","7а":"Литература","7б":"Литература","7в":"Биология","8а":"Русский язык","8б":"Русский язык","8в":"Русский язык"}},{"n":2,"t":"14:45-15:25","b":{"6а":"Математика","6б":"Математика","6в":"Математика","7а":"Алгебра","7б":"Алгебра","7в":"Геометрия","8а":"Русский язык","8б":"Русский язык","8в":"Химия"}},{"n":3,"t":"15:40-16:20","b":{"6а":"Литература","6б":"Литература","6в":"Русский язык","7а":"Алгебра","7б":"Алгебра","7в":"Русский язык","8а":"Химия","8б":"Химия","8в":"Геометрия"}},{"n":4,"t":"16:30-17:10","b":{"6а":"Русский язык","6б":"Русский язык","6в":"Иностранный язык","7а":"Физическая культура","7б":"Физическая культура","7в":"Физика","8а":"География","8б":"География","8в":"Иностранный язык"}},{"n":5,"t":"17:15-17:55","b":{"6а":"История","6б":"История","6в":"Физическая культура","7а":"История","7б":"История","7в":"Информатика","8а":"Иностранный язык","8б":"Иностранный язык","8в":"Русский язык"}},{"n":6,"t":"18:00-18:40","b":{"6а":"Труд (технология)","6б":"Труд (технология)","7а":"Физика","7б":"Физика","7в":"Физическая культура","8а":"ОБЗР","8б":"ОБЗР","8в":"Физическая культура"}}]},{"d":"четверг","l":[{"n":2,"t":"14:45-15:25","b":{"6а":"Русский язык","6б":"Русский язык","6в":"География","7а":"Биология","7б":"Биология","7в":"Литература","8а":"Алгебра","8б":"Алгебра","8в":"География"}},{"n":3,"t":"15:40-16:20","b":{"6а":"Математика","6б":"Математика","6в":"Русский язык","7а":"География","7б":"География","7в":"История","8а":"Алгебра","8б":"Алгебра","8в":"Химия"}},{"n":4,"t":"16:30-17:10","b":{"6а":"Русский язык","6б":"Русский язык","6в":"Русский язык","7а":"Иностранный язык","7б":"Иностранный язык","7в":"Вероятность и статистика","8а":"Иностранный язык","8б":"Иностранный язык","8в":"Алгебра"}},{"n":5,"t":"17:15-17:55","b":{"6а":"История","6б":"История","6в":"История","7а":"Труд (технология)","7б":"Труд (технология)","7в":"Родной язык","8а":"Физика","8б":"Физика","8в":"Вероятность и статистика"}},{"n":6,"t":"18:00-18:40","b":{"6а":"Физическая культура","6б":"Физическая культура","6в":"Иностранный язык","7а":"Физика","7б":"Физика","7в":"Иностранный язык","8а":"Биология","8б":"Биология","8в":"Родной язык"}}]},{"d":"пятница","l":[{"n":1,"t":"14:00-14:40","b":{"6а":"Музыка","6б":"Музыка","6в":"Литература","7а":"Геометрия","7б":"Геометрия","7в":"Алгебра","8а":"География","8б":"География","8в":"Родная литература"}},{"n":2,"t":"14:45-15:25","b":{"6а":"Русский язык","6б":"Русский язык","6в":"Математика","7а":"Иностранный язык","7б":"Иностранный язык","7в":"Родной язык","8а":"Химия","8б":"Химия","8в":"Физика"}},{"n":3,"t":"15:40-16:20","b":{"6а":"Математика","6б":"Математика","6в":"Родной язык","7а":"Русский язык","7б":"Русский язык","7в":"Геометрия","8а":"Алгебра","8б":"Алгебра","8в":"Иностранный язык"}},{"n":4,"t":"16:30-17:10","b":{"6а":"Иностранный язык","6б":"Иностранный язык","6в":"Родной язык","7а":"Литература","7б":"Литература","7в":"Русский язык","8а":"Литература","8б":"Литература","8в":"Алгебра"}},{"n":5,"t":"17:15-17:55","b":{"6а":"Литература","6б":"Литература","6в":"Труд (технология)","7а":"Музыка","7б":"Музыка","7в":"Музыка","8а":"Музыка","8б":"Музыка","8в":"Родной язык"}},{"n":6,"t":"18:00-18:40","b":{"6а":"ИЗО","6б":"ИЗО","6в":"Физическая культура","7а":"Физическая культура","7б":"Физическая культура","7в":"Физическая культура","8а":"Физическая культура","8б":"Физическая культура","8в":"Физическая культура"}}]},{"d":"суббота","l":[{"n":1,"t":"14:00-14:40","b":{"6в":"Русский язык","7а":"Алгебра","7б":"Алгебра","7в":"Литература","8а":"Биология","8б":"Биология","8в":"Биология"}},{"n":2,"t":"14:45-15:25","b":{"6в":"Русский язык","7а":"Вероятность и статистика","7б":"Вероятность и статистика","7в":"Русский язык","8а":"Вероятность и статистика","8б":"Вероятность и статистика","8в":"История"}},{"n":3,"t":"15:40-16:20","b":{"6в":"Родная литература","7а":"История","7б":"История","7в":"Иностранный язык","8а":"История","8б":"История","8в":"Информатика"}},{"n":4,"t":"16:30-17:10","b":{"6в":"Музыка","7а":"Информатика","7б":"Информатика","7в":"География","8а":"Информатика","8б":"Информатика","8в":"Литература"}},{"n":5,"t":"17:15-17:55","b":{"6в":"Физическая культура","7а":"ЯЯГОС","7б":"ЯЯГОС","7в":"ИЗО","8а":"Труд (технология)","8б":"Труд (технология)","8в":"Музыка"}},{"n":6,"t":"18:00-18:40","b":{"8а":"Труд (технология)","8б":"Труд (технология)","8в":"Физическая культура"}}]}]}]}</script>
+<script>
+(function () {
+  var el = document.getElementById("sched-data");
+  if (!el) return;
+  var DATA = JSON.parse(el.textContent || "{}");
+  if (!DATA.shifts) return;
+
+  var picker = document.getElementById("picker");
+  var meta = document.getElementById("sched-meta");
+  var week = document.getElementById("week");
+  var DAYS = ["воскресенье", "понедельник", "вторник", "среда", "четверг", "пятница", "суббота"];
+  var KEY = "2sosh.class";
+
+  var index = {};
+  DATA.shifts.forEach(function (sh) {
+    sh.classes.forEach(function (c) { index[c] = sh; });
+  });
+
+  function minutes(hhmm) {
+    var p = hhmm.split(":");
+    return parseInt(p[0], 10) * 60 + parseInt(p[1], 10);
+  }
+
+  function render(cls) {
+    var sh = index[cls];
+    if (!sh) return;
+
+    Array.prototype.forEach.call(picker.querySelectorAll("button.cls"), function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.cls === cls));
+    });
+
+    var total = 0;
+    sh.days.forEach(function (d) {
+      d.l.forEach(function (l) { if (l.b[cls]) total++; });
+    });
+
+    var bits = ["<b>" + cls + "</b>", sh.name.toLowerCase()];
+    if (sh.rooms[cls]) bits.push("кабинет " + sh.rooms[cls]);
+    bits.push(total + " " + plural(total, ["урок", "урока", "уроков"]) + " в неделю");
+    meta.innerHTML = bits.join(" · ");
+
+    var now = new Date();
+    var today = DAYS[now.getDay()];
+    var mins = now.getHours() * 60 + now.getMinutes();
+
+    week.innerHTML = sh.days.map(function (d) {
+      var isToday = d.d === today;
+      var rows = d.l.map(function (l) {
+        var v = l.b[cls];
+        if (!v) return "";
+        var parts = v.split("|");
+        var room = parts[1] ? '<span class="room">' + parts[1] + "</span>" : "";
+        var live = false;
+        if (isToday && l.t) {
+          var se = l.t.split("-");
+          if (se.length === 2) live = mins >= minutes(se[0]) && mins < minutes(se[1]);
+        }
+        var time = l.t ? l.t.replace("-", " — ") : "";
+        return '<div class="lesson' + (live ? " now" : "") + '">' +
+                 '<span class="n">' + l.n + "</span>" +
+                 '<span class="s">' + parts[0] + room + "</span>" +
+                 (time ? '<span class="t">' + (live ? "<em>сейчас · </em>" : "") + time + "</span>" : "") +
+               "</div>";
+      }).join("");
+      return '<div class="day' + (isToday ? " today" : "") + '"><h4>' + d.d + "</h4>" + rows + "</div>";
+    }).join("");
+
+    try { localStorage.setItem(KEY, cls); } catch (e) {}
+  }
+
+  function plural(n, forms) {
+    var a = Math.abs(n) % 100, b = a % 10;
+    if (a > 10 && a < 20) return forms[2];
+    if (b > 1 && b < 5) return forms[1];
+    if (b === 1) return forms[0];
+    return forms[2];
+  }
+
+  picker.innerHTML = DATA.shifts.map(function (sh) {
+    return '<div class="pgroup"><b>' + sh.note + "</b><div class=\"chips\">" +
+      sh.classes.map(function (c) {
+        return '<button type="button" class="cls" data-cls="' + c + '" aria-pressed="false">' + c + "</button>";
+      }).join("") + "</div></div>";
+  }).join("");
+
+  picker.addEventListener("click", function (e) {
+    var b = e.target.closest("button.cls");
+    if (b) render(b.dataset.cls);
+  });
+
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  render(saved && index[saved] ? saved : DATA.shifts[0].classes[0]);
+})();
+</script>
+</body>
+</html>
